@@ -1,0 +1,7 @@
+<h1>Hello world</h1>
+
+<% if Current.user %>
+<p> button_to "Sign Out", session_path, method: :delete, data: { turbo_method: :delete }   %> </p>
+<% else %>
+<p> You are not signed in</p>
+<% end %>
