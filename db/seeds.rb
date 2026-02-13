@@ -12,21 +12,12 @@
 puts "-- Seeding database --"
 emails = [
   "mtheogene@gmail.com",
-  "ethompson@example.com",
-  "jrodriguez@example.com",
-  "schen@example.com",
-  "lobrien@example.com",
-  "omartinez@example.com",
-  "nwilliams@example.com",
-  "ikim@example.com",
-  "eanderson@example.com",
-  "mjohnson@example.com"
 ]
 
 emails.each do |email|
   puts "-- Adding #{email} --"
   User.find_or_create_by!(email: email) do |user|
-    user.password = "appdev"
+    user.password = SecureRandom.hex(8)
   end
 end
 
