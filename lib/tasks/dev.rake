@@ -23,16 +23,23 @@ unless Rails.env.production?
         end
       end
 
-      # Add skills
-
+      # Add skills (now allowing duplicates)
       100.times do
-        name = Names.sample
+        name = names.sample  # Fixed: changed Names.sample to names.sample
         email = "#{name}@example.com"
         user = User.find_by(email: email)
+        
+        # Skip if user not found (just in case)
+        next unless user
 
-        skills = Skills.find_or_create_by(body: Faker::Job.key_skill) do |skills|
-          s.user = user
-        end
+        # Use create! instead of find_or_create_by to allow duplicates
+        skill = Skill.create(  # Fixed: changed Skills to Skill (assuming model name)
+          name: Faker::Job.key_skill,
+          user: user
+        )
+        
+        # Optional: print progress every 10 skills
+        puts "  Created skill #{skill.id} for #{user.email}" if (skill.id % 10 == 0)
       end
 
       puts "-- Done --"

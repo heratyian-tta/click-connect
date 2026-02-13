@@ -4,5 +4,6 @@ class PagesController < ApplicationController
       redirect_to dashboard_url
     else
       render :home
-    end 
+    end
   end
+end

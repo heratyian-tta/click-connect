@@ -8,7 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Skill < ApplicationRecord
-
-  has_many  :user_skills, class_name: "UserSkill", foreign_key: "skill_id", dependent: :destroy
+  belongs_to :user
+  
+  has_many :user_skills, class_name: "UserSkill", foreign_key: "skill_id", dependent: :destroy
   has_many :users, through: :user_skills, source: :user
 end
