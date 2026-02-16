@@ -1,747 +1,737 @@
-<p id="notice"><%= notice %></p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click Connect · internal skills & projects</title>
+    <title>Click Connect · Connect skilled teammates · internal projects & expertise</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: #f2f6fb;
             color: #1a2b3e;
-            line-height: 1.5;
-            padding: 1.8rem 1.5rem;
         }
 
-        .app-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* header */
-        .top-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.2rem;
+        /* Custom styles on top of Bootstrap */
+        .navbar {
+            padding: 1.2rem 0;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,30,60,0.05);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            font-size: 1.9rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #0f3b5e;
         }
 
         .logo i {
             color: #2b6c9e;
+            background: #e5f0ff;
+            padding: 0.5rem;
+            border-radius: 12px;
         }
 
-        .user-badge {
-            background: white;
-            border-radius: 40px;
-            padding: 0.5rem 1.5rem 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 12px rgba(0,30,60,0.08);
-        }
-
-        .user-badge i {
-            font-size: 1.8rem;
-            color: #1f5f92;
-        }
-
-        /* main 3‑column grid */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1.2fr 1.9fr 1.2fr;
-            gap: 1.8rem;
-            align-items: start;
-        }
-
-        /* universal card style */
-        .card {
-            background: white;
-            border-radius: 2rem;
-            padding: 1.6rem 1.5rem;
-            box-shadow: 0 10px 28px -8px rgba(0,40,70,0.12);
-            margin-bottom: 1.8rem;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 1.4rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #1d435e;
-            border-bottom: 2px solid #e9f0f7;
-            padding-bottom: 0.6rem;
-        }
-
-        .card-header i {
-            color: #336fa3;
-            width: 2rem;
-        }
-
-        /* search row */
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: #f0f5fc;
-            border-radius: 3rem;
-            padding: 0.2rem 0.2rem 0.2rem 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-box i {
-            color: #597faa;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            padding: 0.8rem 0.6rem;
-            width: 100%;
-            outline: none;
-            font-size: 0.95rem;
-        }
-
-        .search-box button {
+        .btn-primary-custom {
             background: #1e4f8a;
-            border: none;
             color: white;
-            font-weight: 500;
-            padding: 0.6rem 1.6rem;
-            border-radius: 3rem;
-            cursor: pointer;
-            transition: 0.1s;
-            white-space: nowrap;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        .search-box button:hover {
+        .btn-primary-custom:hover {
             background: #123f6e;
-        }
-
-        /* skill chips & results */
-        .skill-chip {
-            background: #e4eefa;
-            padding: 0.45rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 0.25rem;
-            border: 1px solid #c5d9f0;
-        }
-
-        .person-result {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 0.5rem;
-            border-bottom: 1px solid #e5eef9;
-        }
-
-        .person-result:last-child {
-            border-bottom: none;
-        }
-
-        .result-avatar {
-            width: 46px;
-            height: 46px;
-            background: linear-gradient(145deg, #4177b0, #1f4f82);
-            border-radius: 40%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-            font-weight: 600;
         }
 
-        .result-info h4 {
-            font-size: 1rem;
-            font-weight: 650;
-        }
-
-        .result-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 4px;
-        }
-
-        .mini-skill {
-            background: #d9e6f5;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.7rem;
-            border-radius: 30px;
-        }
-
-        /* editable skill list (my skills) */
-        .my-skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin: 1rem 0 1.2rem;
-        }
-
-        .skill-item {
-            background: #e1effb;
-            padding: 0.4rem 1.2rem 0.4rem 1.4rem;
-            border-radius: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .skill-item i {
-            color: #b22234; /* remove icon tone */
-            cursor: pointer;
-            opacity: 0.7;
-            transition: 0.1s;
-            font-size: 1rem;
-        }
-
-        .skill-item i:hover {
-            opacity: 1;
-            color: #c0392b;
-        }
-
-        .add-skill-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .add-skill-form input {
-            flex: 1;
-            padding: 0.7rem 1.2rem;
-            border: 1px solid #cbdbe9;
-            border-radius: 40px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .add-skill-form button {
-            background: #1e4f8a;
-            border: none;
-            color: white;
-            padding: 0 1.6rem;
+        .btn-outline-custom {
+            background: white;
+            color: #1e4f8a;
+            border: 2px solid #1e4f8a;
+            padding: 0.7rem 1.8rem;
             border-radius: 40px;
             font-weight: 600;
-            cursor: pointer;
+            transition: 0.2s;
         }
 
-        /* project cards (editable) */
-        .project-card {
-            background: #f8fbfe;
-            border-radius: 1.5rem;
-            padding: 1.2rem 1.3rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid #dae6f2;
+        .btn-outline-custom:hover {
+            background: #f0f7ff;
+            color: #1e4f8a;
         }
 
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.4rem;
-        }
-
-        .project-header h4 {
+        .btn-large {
+            padding: 1rem 2.5rem;
             font-size: 1.1rem;
-            font-weight: 650;
         }
 
-        .project-actions i {
-            margin-left: 0.7rem;
-            color: #6585a6;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .project-actions i:hover {
-            color: #1f4f82;
-        }
-
-        .project-meta {
-            font-size: 0.8rem;
-            color: #3e6a91;
-            margin-bottom: 0.6rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: #2d4b6b;
-            margin: 0.6rem 0 0.8rem;
-        }
-
-        .project-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .project-skill-tag {
-            background: #c9dff5;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .btn-add-project {
+        .hero {
+            padding: 4rem 0;
             background: white;
-            border: 2px dashed #769dc0;
-            color: #1f4a74;
-            padding: 0.9rem;
-            border-radius: 2rem;
-            text-align: center;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: 0.1s;
         }
 
-        .btn-add-project i {
-            margin-right: 8px;
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0a2647;
         }
 
-        .btn-add-project:hover {
-            background: #ebf3fc;
+        .highlight {
+            color: #2b6c9e;
+            position: relative;
         }
 
-        /* modal (hidden by default) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3);
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(43, 108, 158, 0.2);
+            z-index: -1;
+        }
+
+        .audience-tag {
+            background: #eef4fa;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1e4f8a;
+            border: 1px solid #c5d9f0;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a2647;
+            line-height: 1.2;
+        }
+
+        .hero-image {
+            background: linear-gradient(145deg, #f0f7ff, #e1eefa);
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            bottom: 30px;
+            left: -20px;
+        }
+
+        .features {
+            padding: 6rem 0;
+            background: #f8fbfe;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 79, 138, 0.1);
+        }
+
+        .feature-icon {
+            background: #e5f0ff;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 2.5rem;
-            padding: 2.2rem 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 30px 50px rgba(0,30,60,0.4);
-        }
-
-        .modal-content h3 {
-            font-size: 1.6rem;
             margin-bottom: 1.5rem;
-            color: #123454;
         }
 
-        .modal-content input, .modal-content textarea, .modal-content select {
+        .feature-icon i {
+            font-size: 2rem;
+            color: #1e4f8a;
+        }
+
+        .demo {
+            padding: 6rem 0;
+        }
+
+        .demo-video {
+            background: #1a2b3e;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-placeholder {
             width: 100%;
-            padding: 0.9rem 1.2rem;
+            height: 300px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .play-button {
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .play-button i {
+            color: #1e4f8a;
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        .social-proof {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #1e4f8a, #0a2647);
+            color: white;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            height: 100%;
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: #e5f0ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e4f8a;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .media-mentions {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .media-item {
+            opacity: 0.7;
+            transition: 0.2s;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .media-item:hover {
+            opacity: 1;
+        }
+
+        .media-item i {
+            margin-right: 0.5rem;
+        }
+
+        .cta-section {
+            padding: 6rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .footer {
+            background: #f8fbfe;
+            padding: 3rem 0;
+            border-top: 1px solid #dbe8f2;
+        }
+
+        .custom-domain {
+            background: #e5f0ff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            color: #1e4f8a;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .custom-domain i {
+            margin-right: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #4a6782;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .footer-links a:hover {
+            color: #1e4f8a;
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: 30px;
+            padding: 1rem;
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: #0a2647;
+        }
+
+        .modal-body input {
+            width: 100%;
+            padding: 1rem 1.2rem;
             margin-bottom: 1rem;
             border: 1px solid #b9cfeb;
             border-radius: 40px;
-            font-size: 0.95rem;
-            outline: none;
+            font-size: 1rem;
         }
 
-        .modal-content textarea {
-            border-radius: 1.5rem;
-            resize: vertical;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-        }
-
-        .modal-actions button {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .modal-actions .btn-save {
-            background: #1e4f8a;
-            color: white;
-        }
-
-        .modal-actions .btn-cancel {
+        .btn-modal-cancel {
             background: #e2ecf9;
             color: #1f3b57;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
         }
 
-        hr {
-            border: 1px solid #dbe8f2;
-            margin: 1rem 0;
+        .btn-modal-save {
+            background: #1e4f8a;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
         }
 
-        .info-note {
-            font-size: 0.8rem;
-            color: #597b9c;
-            margin-top: 0.4rem;
-        }
-
-        @media (max-width: 1000px) {
-            .dashboard { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .footer-links a {
+                margin: 0 1rem 0 0;
+            }
         }
     </style>
 </head>
 <body>
-<div class="app-container">
-    <!-- top bar (static) -->
-    <div class="top-bar">
-        <div class="logo">
-            <i class="fas fa-cubes"></i> Click Connect
-        </div>
-        <div class="user-badge">
-            <i class="fas fa-circle-user"></i>
-            <span><strong>Alex Morgan</strong> (you) · frontend</span>
-        </div>
-    </div>
-
-    <!-- 3‑column dashboard -->
-    <div class="dashboard">
-        <!-- COLUMN 1: SEARCH PEOPLE BY SKILL (req #1) -->
-        <div class="card">
-            <div class="card-header"><i class="fas fa-magnifying-glass"></i> Find by skill</div>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="skillSearchInput" placeholder="e.g. React, UX, Python" value="React">
-                <button id="searchBtn"><i class="fa-regular fa-eye"></i> Search</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">
+                <i class="fas fa-cubes"></i> Click Connect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">How it works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#login">Log in</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-primary-custom" id="navSignupBtn">Get Started</button>
+                    </li>
+                </ul>
             </div>
-            <div id="searchResults">
-                <!-- dynamic results from js -->
-                <div class="person-result">
-                    <div class="result-avatar">MC</div>
-                    <div class="result-info">
-                        <h4>Marcus Chen</h4>
-                        <div class="result-skills">
-                            <span class="mini-skill">React</span>
-                            <span class="mini-skill">Python</span>
-                            <span class="mini-skill">AWS</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h1>
+                        Find the right teammate<br>
+                        <span class="highlight">before you build</span>
+                    </h1>
+                    <p class="fs-5 text-secondary mb-4">
+                        Click Connect helps you discover colleagues with the exact skills you need for your next project. No more guessing who knows what.
+                    </p>
+                    
+                    <!-- Audience Targeting -->
+                    <div class="mb-4">
+                        <span class="audience-tag"><i class="fas fa-code"></i> Developers</span>
+                        <span class="audience-tag"><i class="fas fa-paint-brush"></i> Designers</span>
+                        <span class="audience-tag"><i class="fas fa-chart-line"></i> PMs</span>
+                        <span class="audience-tag"><i class="fas fa-database"></i> Data teams</span>
+                        <span class="audience-tag"><i class="fas fa-bullhorn"></i> Marketing</span>
+                    </div>
+
+                    <!-- Clear CTA -->
+                    <div class="d-flex gap-3 flex-wrap mb-5">
+                        <button class="btn btn-primary-custom btn-large" id="heroSignupBtn">
+                            <i class="fas fa-rocket me-2"></i>Start connecting free
+                        </button>
+                        <button class="btn btn-outline-custom btn-large" id="demoBtn">
+                            <i class="fas fa-play me-2"></i>See how it works
+                        </button>
+                    </div>
+
+                    <!-- Social proof stats -->
+                    <div class="d-flex gap-5">
+                        <div>
+                            <div class="stat-number">5,000+</div>
+                            <div class="text-secondary">teammates connected</div>
+                        </div>
+                        <div>
+                            <div class="stat-number">1,200+</div>
+                            <div class="text-secondary">companies</div>
+                        </div>
+                        <div>
+                            <div class="stat-number">4.8★</div>
+                            <div class="text-secondary">team satisfaction</div>
                         </div>
                     </div>
                 </div>
-                <div class="person-result">
-                    <div class="result-avatar">TL</div>
-                    <div class="result-info">
-                        <h4>Tessa Liu</h4>
-                        <div class="result-skills">
-                            <span class="mini-skill">React</span>
-                            <span class="mini-skill">CSS</span>
-                            <span class="mini-skill">XD</span>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f0f7ff'/%3E%3Ctext x='50' y='100' font-family='Arial' font-size='20' fill='%231e4f8a'%3EClick Connect Dashboard%3C/text%3E%3Crect x='50' y='150' width='150' height='200' fill='white' rx='20'/%3E%3Crect x='220' y='150' width='330' height='200' fill='white' rx='20'/%3E%3Ccircle cx='100' cy='220' r='30' fill='%231e4f8a'/%3E%3C/svg%3E" alt="Click Connect Dashboard Preview" class="img-fluid">
+                        <div class="floating-card d-none d-lg-flex">
+                            <i class="fas fa-search"></i>
+                            <span><strong>React devs</strong> • 24 available</span>
                         </div>
                     </div>
                 </div>
-                <div class="info-note" style="padding:0.5rem;">↑ demo results, search updates list</div>
             </div>
         </div>
+    </section>
 
-        <!-- COLUMN 2: MY PROJECTS (req #2) -->
-        <div class="card">
-            <div class="card-header"><i class="fas fa-briefcase"></i> My projects</div>
-            <div id="projectsContainer">
-                <!-- filled by JS with sample editable projects -->
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-3">Connect with the right expertise</h2>
+                    <p class="fs-5 text-secondary">Everything you need to build better teams, faster</p>
+                </div>
             </div>
-            <div class="btn-add-project" id="addProjectBtn">
-                <i class="fas fa-plus-circle"></i> Add new project
-            </div>
-        </div>
-
-        <!-- COLUMN 3: MY SKILLS (req #3) + update -->
-        <div class="card">
-            <div class="card-header"><i class="fas fa-lightbulb"></i> My skills</div>
-            <div id="mySkillsContainer" class="my-skills-list">
-                <!-- dynamic skill list from js -->
-            </div>
-            <div class="add-skill-form">
-                <input type="text" id="newSkillInput" placeholder="e.g. TypeScript">
-                <button id="addSkillBtn"><i class="fas fa-plus"></i> Add</button>
-            </div>
-            <hr>
-            <div><i class="fa-regular fa-pen-to-square" style="margin-right:6px;"></i>Click ✖ to remove a skill</div>
-        </div>
-    </div>
-
-    <!-- MODAL for adding/editing projects (hidden by default) -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Add project</h3>
-            <input type="text" id="projectName" placeholder="Project name">
-            <input type="text" id="projectRole" placeholder="Your role (e.g. Lead dev)">
-            <textarea id="projectDesc" placeholder="Short description" rows="2"></textarea>
-            <input type="text" id="projectSkills" placeholder="Skills used (comma separated)">
-            <div class="modal-actions">
-                <button class="btn-cancel" id="cancelModal">Cancel</button>
-                <button class="btn-save" id="saveProject">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    (function() {
-        // ---------- FAKE DATA / STATE ----------
-        // "My" current user = Alex (we store his skills & projects separately)
-
-        // mySkills (editable)
-        let mySkills = ['React', 'Figma', 'UX research', 'CSS'];
-
-        // myProjects (each with id, name, role, description, skills[])
-        let myProjects = [
-            { id: 'p1', name: 'Dashboard redesign', role: 'UI designer', description: 'Modernized analytics dashboard, improved UX', skills: ['Figma', 'React', 'UserTesting'] },
-            { id: 'p2', name: 'Design system migration', role: 'Frontend lead', description: 'Migrated components to new DS with Storybook', skills: ['React', 'CSS', 'Storybook'] }
-        ];
-
-        // All employees (for search)
-        const employees = [
-            { initials: 'JD', name: 'Jessie Du', skills: ['UX research', 'Figma', 'Prototyping', 'React'] },
-            { initials: 'MC', name: 'Marcus Chen', skills: ['Python', 'React', 'AWS', 'GraphQL'] },
-            { initials: 'SR', name: 'Samira Reed', skills: ['SQL', 'Tableau', 'Jira', 'Analytics'] },
-            { initials: 'TL', name: 'Tessa Liu', skills: ['Design system', 'Adobe XD', 'CSS', 'React'] },
-            { initials: 'EK', name: 'Emir K.', skills: ['K8s', 'Terraform', 'Azure', 'Python'] },
-            { initials: 'AM', name: 'Alex Morgan', skills: mySkills } // yourself
-        ];
-
-        // ---------- RENDER HELPERS ----------
-        function renderMySkills() {
-            const container = document.getElementById('mySkillsContainer');
-            container.innerHTML = '';
-            mySkills.forEach(skill => {
-                const skillDiv = document.createElement('span');
-                skillDiv.className = 'skill-item';
-                skillDiv.innerHTML = `${skill} <i class="fa-regular fa-circle-xmark" data-skill="${skill}"></i>`;
-                container.appendChild(skillDiv);
-            });
-
-            // attach remove events to X icons
-            document.querySelectorAll('.skill-item i').forEach(icon => {
-                icon.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const skillToRemove = icon.dataset.skill;
-                    mySkills = mySkills.filter(s => s !== skillToRemove);
-                    renderMySkills();
-                    // also update search results (Alex's skills changed)
-                    renderSearchResults(document.getElementById('skillSearchInput').value);
-                });
-            });
-        }
-
-        function renderProjects() {
-            const container = document.getElementById('projectsContainer');
-            container.innerHTML = '';
-            myProjects.forEach(proj => {
-                const projCard = document.createElement('div');
-                projCard.className = 'project-card';
-                projCard.dataset.id = proj.id;
-                projCard.innerHTML = `
-                    <div class="project-header">
-                        <h4>${proj.name}</h4>
-                        <div class="project-actions">
-                            <i class="fa-regular fa-pen-to-square" data-id="${proj.id}" data-action="edit"></i>
-                            <i class="fa-regular fa-trash-can" data-id="${proj.id}" data-action="delete"></i>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-magnifying-glass"></i>
                         </div>
+                        <h3 class="h4 fw-bold mb-3">Skill-based search</h3>
+                        <p class="text-secondary">Find colleagues by specific skills - React, UX research, Python, or any expertise. See who knows what in seconds.</p>
                     </div>
-                    <div class="project-meta"><i class="fa-regular fa-user"></i> ${proj.role}</div>
-                    <div class="project-desc">${proj.description}</div>
-                    <div class="project-skills">
-                        ${proj.skills.map(s => `<span class="project-skill-tag">${s}</span>`).join('')}
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="h4 fw-bold mb-3">Project matching</h3>
+                        <p class="text-secondary">Discover ongoing projects that need your skills. Join teams that align with your expertise and interests.</p>
                     </div>
-                `;
-                container.appendChild(projCard);
-            });
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="h4 fw-bold mb-3">Skill management</h3>
+                        <p class="text-secondary">Easily update your own skills and see how you can contribute to projects across your organization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            // Attach edit/delete events
-            document.querySelectorAll('.project-actions i[data-action="edit"]').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const id = btn.dataset.id;
-                    const project = myProjects.find(p => p.id === id);
-                    if (project) openProjectModal(project);
-                });
-            });
-            document.querySelectorAll('.project-actions i[data-action="delete"]').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const id = btn.dataset.id;
-                    myProjects = myProjects.filter(p => p.id !== id);
-                    renderProjects();
-                });
-            });
-        }
-
-        // Search function (req #1)
-        function renderSearchResults(query) {
-            const container = document.getElementById('searchResults');
-            const lowerQuery = query.toLowerCase();
-            if (!lowerQuery.trim()) {
-                container.innerHTML = '<div class="info-note" style="padding:1rem;">Enter a skill to search</div>';
-                return;
-            }
-
-            const matching = employees.filter(emp =>
-                emp.skills.some(skill => skill.toLowerCase().includes(lowerQuery))
-            );
-
-            if (matching.length === 0) {
-                container.innerHTML = '<div class="info-note" style="padding:1rem;">No matches</div>';
-                return;
-            }
-
-            let htmlStr = '';
-            matching.forEach(emp => {
-                const matchedSkills = emp.skills.filter(s => s.toLowerCase().includes(lowerQuery));
-                htmlStr += `
-                    <div class="person-result">
-                        <div class="result-avatar">${emp.initials}</div>
-                        <div class="result-info">
-                            <h4>${emp.name}</h4>
-                            <div class="result-skills">
-                                ${emp.skills.slice(0,4).map(s => `<span class="mini-skill">${s}</span>`).join('')}
-                                ${emp.skills.length > 4 ? '<span class="mini-skill">…</span>' : ''}
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-4">See Click Connect in action</h2>
+                    <p class="fs-5 text-secondary mb-4">Watch how easy it is to find the perfect teammate for your next project. From skill search to team formation in minutes.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3"><i class="fas fa-check-circle text-primary me-3"></i>Search by any skill</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-primary me-3"></i>See team availability</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-primary me-3"></i>Connect instantly</li>
+                    </ul>
+                    <button class="btn btn-outline-custom" id="watchDemoBtn">
+                        <i class="fas fa-play me-2"></i>Watch full demo (2 min)
+                    </button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="demo-video" id="videoContainer">
+                        <div class="video-placeholder">
+                            <div class="play-button" id="playVideo">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
                     </div>
-                `;
-            });
-            container.innerHTML = htmlStr;
-        }
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Modal logic for projects (add/edit)
-        let currentEditId = null;
-        const modal = document.getElementById('projectModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const projName = document.getElementById('projectName');
-        const projRole = document.getElementById('projectRole');
-        const projDesc = document.getElementById('projectDesc');
-        const projSkills = document.getElementById('projectSkills');
+    <!-- Social Proof Section -->
+    <section class="social-proof" id="testimonials">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold text-white mb-3">Trusted by innovative teams</h2>
+                    <p class="fs-5 text-white-50">See what our users say about Click Connect</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Click Connect helped us find a React developer with AWS experience in hours instead of weeks. Game changer for internal mobility."
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="author-avatar">SP</div>
+                            <div>
+                                <h5 class="text-white mb-1">Sarah Parker</h5>
+                                <p class="text-white-50 mb-0">Engineering Manager, TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "As a designer, I found the perfect product team to collaborate with. Now we're shipping features 2x faster."
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="author-avatar">MC</div>
+                            <div>
+                                <h5 class="text-white mb-1">Marcus Chen</h5>
+                                <p class="text-white-50 mb-0">Lead Designer, DesignStudio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "The skill management feature keeps our org chart dynamic and useful. Finally know who knows what!"
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="author-avatar">JR</div>
+                            <div>
+                                <h5 class="text-white mb-1">Jessica Rodriguez</h5>
+                                <p class="text-white-50 mb-0">HR Director, InnovateInc</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        function openProjectModal(project = null) {
-            currentEditId = project ? project.id : null;
-            modalTitle.textContent = project ? 'Edit project' : 'Add project';
-            if (project) {
-                projName.value = project.name || '';
-                projRole.value = project.role || '';
-                projDesc.value = project.description || '';
-                projSkills.value = project.skills ? project.skills.join(', ') : '';
-            } else {
-                projName.value = '';
-                projRole.value = '';
-                projDesc.value = '';
-                projSkills.value = '';
-            }
-            modal.classList.add('active');
-        }
+            <!-- Media Mentions -->
+            <div class="media-mentions">
+                <div class="media-item"><i class="fab fa-techcrunch"></i> TechCrunch</div>
+                <div class="media-item"><i class="fab fa-forbes"></i> Forbes</div>
+                <div class="media-item"><i class="fab fa-wired"></i> Wired</div>
+                <div class="media-item"><i class="fab fa-product-hunt"></i> Product Hunt</div>
+            </div>
+        </div>
+    </section>
 
-        function closeModal() {
-            modal.classList.remove('active');
-            currentEditId = null;
-        }
+    <!-- Final CTA Section -->
+    <section class="cta-section" id="signup">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 class="display-5 fw-bold mb-4">Ready to connect?</h2>
+                    <p class="fs-5 text-secondary mb-4">Join thousands of teams already using Click Connect to find the right expertise.</p>
+                    <button class="btn btn-primary-custom btn-large mb-4" id="finalCtaBtn">
+                        <i class="fas fa-rocket me-2"></i>Start connecting free
+                    </button>
+                    <p class="text-secondary">
+                        <i class="fas fa-check-circle text-primary me-2"></i>No credit card required • Free 14-day trial
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Save project from modal
-        document.getElementById('saveProject').addEventListener('click', () => {
-            const name = projName.value.trim();
-            const role = projRole.value.trim();
-            const desc = projDesc.value.trim();
-            const skillsStr = projSkills.value.trim();
-            if (!name) return;
+    <!-- Footer with Custom Domain -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="logo">
+                        <i class="fas fa-cubes"></i> Click Connect
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0 text-center">
+                    <div class="custom-domain">
+                        <i class="fas fa-globe"></i> www.clickconnect.com
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div class="footer-links">
+                        <a href="#" class="me-3">Privacy</a>
+                        <a href="#" class="me-3">Terms</a>
+                        <a href="#" class="me-3">Contact</a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            const skillsArray = skillsStr ? skillsStr.split(',').map(s => s.trim()).filter(s => s) : [];
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Start connecting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control rounded-pill mb-3" placeholder="Full name" id="signupName">
+                    <input type="email" class="form-control rounded-pill mb-3" placeholder="Work email" id="signupEmail">
+                    <input type="text" class="form-control rounded-pill mb-3" placeholder="Company name" id="signupCompany">
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-modal-save" id="submitSignup">Get started</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            if (currentEditId) {
-                // edit existing
-                const index = myProjects.findIndex(p => p.id === currentEditId);
-                if (index !== -1) {
-                    myProjects[index] = { ...myProjects[index], name, role, description: desc, skills: skillsArray };
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        (function() {
+            // Initialize Bootstrap modal
+            const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+            
+            // Modal triggers
+            document.getElementById('navSignupBtn').addEventListener('click', () => signupModal.show());
+            document.getElementById('heroSignupBtn').addEventListener('click', () => signupModal.show());
+            document.getElementById('finalCtaBtn').addEventListener('click', () => signupModal.show());
+
+            // Signup form submission
+            document.getElementById('submitSignup').addEventListener('click', () => {
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const company = document.getElementById('signupCompany').value;
+                
+                if (name && email && company) {
+                    alert(`Thanks for signing up, ${name}! We'll contact you at ${email}`);
+                    signupModal.hide();
+                    // Clear form
+                    document.getElementById('signupName').value = '';
+                    document.getElementById('signupEmail').value = '';
+                    document.getElementById('signupCompany').value = '';
+                } else {
+                    alert('Please fill in all fields');
                 }
-            } else {
-                // create new with simple id
-                const newId = 'p' + Date.now() + Math.random().toString(36).substring(2,6);
-                myProjects.push({ id: newId, name, role, description: desc, skills: skillsArray });
-            }
-            renderProjects();
-            closeModal();
-        });
+            });
 
-        document.getElementById('cancelModal').addEventListener('click', closeModal);
-        document.getElementById('addProjectBtn').addEventListener('click', () => openProjectModal());
+            // Demo video functionality
+            document.getElementById('playVideo').addEventListener('click', () => {
+                alert('Demo video would play here - showing how to search skills, view projects, and connect with teammates!');
+            });
 
-        // add skill (req #3)
-        document.getElementById('addSkillBtn').addEventListener('click', () => {
-            const input = document.getElementById('newSkillInput');
-            const newSkill = input.value.trim();
-            if (newSkill && !mySkills.includes(newSkill)) {
-                mySkills.push(newSkill);
-                renderMySkills();
-                renderSearchResults(document.getElementById('skillSearchInput').value);
-                input.value = '';
-            }
-        });
+            document.getElementById('videoContainer').addEventListener('click', () => {
+                alert('Demo video would play here - showing how to search skills, view projects, and connect with teammates!');
+            });
 
-        // initial search trigger (req #1)
-        document.getElementById('searchBtn').addEventListener('click', () => {
-            const query = document.getElementById('skillSearchInput').value;
-            renderSearchResults(query);
-        });
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
 
-        // also trigger search on page load with default 'React'
-        window.addEventListener('load', () => {
-            renderMySkills();
-            renderProjects();
-            renderSearchResults('React'); // default from input
-        });
+            // Watch demo button
+            document.getElementById('watchDemoBtn').addEventListener('click', () => {
+                document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+            });
 
-        // extra: pressing Enter in search triggers click
-        document.getElementById('skillSearchInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                document.getElementById('searchBtn').click();
-            }
-        });
+            // Demo button in hero
+            document.getElementById('demoBtn').addEventListener('click', () => {
+                document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+            });
 
-        // close modal if click outside (simple)
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // realtime: update search as you type? we'll keep button to match spec
-        // but you can also call search on input if desired.
-    })();
-</script>
-<!-- tiny note: meets all three requirements: search, projects add/edit/delete, skills add/remove -->
+            // Close modal with escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.getElementById('signupModal').classList.contains('show')) {
+                    signupModal.hide();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
