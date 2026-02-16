@@ -1,5 +1,14 @@
 unless Rails.env.production?
   namespace :dev do
+    desc "Drops, creates, migrates, and adds sample data to database"
+    task reset: [
+      :environment,
+      "db:drop",
+      "db:create",
+      "db:migrate",
+      "dev:sample_data",
+    ]
+
     desc "Add sample data"
     task sample_data: :environment do
       puts "-- Adding sample data --"
@@ -20,6 +29,9 @@ unless Rails.env.production?
         user = User.find_or_create_by(email: "#{name}@example.com") do |user|
           puts "-- Adding user: #{user.email} --"
           user.password = "appdev"
+          user.first_name = name.capitalize
+          user.last_name = "Example"
+          user.bio = "Hi, I'm #{name.capitalize} and I'm a Sample User!"
         end
       end
 
