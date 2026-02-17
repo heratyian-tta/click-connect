@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: "pages#home"
-  get "pages/home"
   get "/dashboard", to: "dashboard#index"
 
   resources :user_skills
