@@ -1,0 +1,95 @@
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, #1e4f8a 0%, #123a64 100%);
+    color: white;
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+    border-top: 4px solid #ffc107;
+}
+
+.footer .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.footer .logo i {
+    color: #ffc107;
+    margin-right: 0.5rem;
+}
+
+.footer .custom-domain {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer .custom-domain i {
+    color: #ffc107;
+    margin-right: 0.5rem;
+}
+
+.footer .custom-domain a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+}
+
+.footer .custom-domain a:hover {
+    color: #ffc107;
+    border-bottom-color: #ffc107;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.footer-links a:hover {
+    color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.footer-links .fa-linkedin {
+    font-size: 1.3rem;
+}
+
+/* Add these for extra footer sections if needed */
+.footer-bottom {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    color: #ffc107;
+    text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .footer .row > div {
+        text-align: center !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        display: inline-block;
+        margin: 0 0.5rem;
+    }
+}
