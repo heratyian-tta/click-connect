@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles
   def index
-    @profiles = Profile.all
+    @skills = Skill.all
   end
 
   # GET /profiles/1
