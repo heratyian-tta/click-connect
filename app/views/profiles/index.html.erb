@@ -3,10 +3,10 @@
 <h1>Profiles</h1>
 
 <div id="profiles">
-  <% @skills.each do |skill| %>
-    <%= render skill %>
+  <% @profiles.each do |profile| %>
+    <%= render profile %>
     <p>
-      <%= link_to "Show this profile", skill %>
+      <%= link_to "Show this profile", profile %>
     </p>
   <% end %>
 </div>
