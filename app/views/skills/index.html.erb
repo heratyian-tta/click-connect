@@ -18,12 +18,13 @@
 <h1>Skills</h1>
 
 <div id="skills">
-  <% @skills.each do |skill| %>
-    <%= render skill %>
-    <p>
-      <%= link_to "Show this skill", skill %>
-    </p>
-  <% end %>
+  <ul>
+    <% @skills.each do |skill| %>
+      <li>
+        <%= link_to skill.name, skill %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
 <%= link_to "New skill", new_skill_path %>
