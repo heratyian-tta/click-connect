@@ -1,31 +1,12 @@
-<h1>Edit Skill</h1>
+<% content_for :title, "Editing skill" %>
 
-<%= form_with(model: @skill, local: true) do |form| %>
-  <% if @skill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved:</h2>
-      <ul>
-        <% @skill.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<h1>Editing skill</h1>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :skill_name, placeholder: "Enter skill name" %>
-  </div>
+<%= render "form", skill: @skill %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :skill_description, placeholder: "Enter skill description" %>
-  </div>
+<br>
 
-  <div class="actions">
-    <%= form.submit "Update Skill" %>
-  </div>
-<% end %>
-
-<%= link_to 'Show', @skill %> |
-<%= link_to 'Back', skills_path %>
+<div>
+  <%= link_to "Show this skill", @skill %> |
+  <%= link_to "Back to skills", skills_path %>
+</div>
