@@ -1,12 +1,14 @@
 <div id="<%= dom_id user_skill %>">
   <p>
     <strong>Skill:</strong>
+    <%= user_skill.skill.name %>
     <%= user_skill.skill_id %>
   </p>
 
   <p>
     <strong>User:</strong>
-    <%= user_skill.user_id %>
+      <%= user_skill.user.first_name %>
+      <%= user_skill.user_id %>
   </p>
 
 </div>
