@@ -8,6 +8,7 @@ class UserSkillsController < ApplicationController
 
   # GET /user_skills/1
   def show
+    @user_skill = UserSkill.find(params[:id])
   end
 
   # GET /user_skills/new
