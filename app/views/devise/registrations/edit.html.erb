@@ -28,6 +28,16 @@
   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
 <% end %>
 
+  <div class="my-3 form-check">
+    <%= f.label :skills, class: "form-check-label" %>
+    <%= f.collection_checkboxes :skill_ids, Skill.all, :id, :name do |b| %>
+      <div class="form-check">
+        <%= b.check_box(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+    <% end %>
+  </div>
+
 
 <div class="my-3">
   <%= f.label :first_name, class: "form-label" %>
