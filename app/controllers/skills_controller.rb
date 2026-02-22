@@ -44,7 +44,7 @@ class SkillsController < ApplicationController
   def show
     @breadcrumbs = [
       { content: "Skills", href: skills_path },
-      { content: @skill.name }
+      { content: "Name: #{@skill.name}" }
 
     ]
   end
