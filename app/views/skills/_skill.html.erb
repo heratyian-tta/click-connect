@@ -7,8 +7,9 @@
   <% User.with_skill(skill).each do |user| %>
     <%# TODO: link to user profile page once implemented %>
     <p>
-    <%= link_to "View #{user.first_name}'s Profile", profile_path(user) %>
-    <%= link_to "View #{user.first_name}'s Skills", user_skills_path(user) %>
+      <%= link_to "#{user.first_name}", user_skills_path(user) %>
+      <%= link_to "View #{user.first_name}'s Skills", user_skills_path(user) %>
+      <%= link_to "View #{user.first_name}'s Profile", profile_path(user) %>
     </p>
   <% end %>
 </div>

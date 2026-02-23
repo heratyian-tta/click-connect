@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   get("/skills", { :controller => "skills", :action => "index" })
   get("/skills/edit", { :controller => "skills", :action => "edit" })
-  get("/skills/new", { :controller => "skills", :action => "new" })
+  
   get("/skills/:id", { :controller => "skills", :action => "show" })
   get("/skills/:id/edit", { :controller => "skills", :action => "edit" })
   post("/skills", { :controller => "skills", :action => "create" })
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   delete("/skills/:id", { :controller => "skills", :action => "destroy" })
 
   get("/user_skills/:id", { :controller => "user_skills", :action => "show" })
+  get("/skills/user_skills", { :controller => "user_skills", :action => "index" })
 
   # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
   # get("/your_first_screen", { :controller => "pages", :action => "first" })
