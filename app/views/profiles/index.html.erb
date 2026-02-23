@@ -1,13 +1,18 @@
-<% content_for :title, "Profiles" %>
-
-<h1>Profiles</h1>
-
-<div id="profiles">
-  <ul>
-    <% @users.each do |user| %>
-      <li>
-        <%= link_to "#{user.full_name}", profile_path(user) %>
-      </li>
-    <% end %>
-  </ul>
+<div class="profiles-header">
+  <h1>All Profiles</h1>
+  <p>Showing <%= @users.count %> profiles</p>
 </div>
+
+<div class="profiles-grid">
+  <%# Loop through all users and render the profile partial for each %>
+  <% @users.each do |user| %>
+    <%= render "profile", user: user %>
+  <% end %>
+</div>
+
+<%# Add pagination if you're using it %>
+<% if @users.respond_to?(:total_pages) %>
+  <div class="pagination">
+    <%= paginate @users %>
+  </div>
+<% end %>

@@ -1,1 +1,179 @@
 <%= render "profile", user: @user %>
+
+<%# app/views/profiles/show.html.erb %>
+
+<div id="profiles">
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= link_to "#{user.full_name}", profile_path(user) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+
+<div class="profile-header">
+  <div class="profile-cover">
+    <% if @user.cover_image_url.present? %>
+      <%= image_tag @user.cover_image_url, alt: "Cover image", class: "cover-img" %>
+    <% else %>
+      <div class="cover-placeholder"></div>
+    <% end %>
+  </div>
+  
+  <div class="profile-header-content">
+    <div class="profile-avatar-large">
+      <% if @user.avatar_url.present? %>
+        <%= image_tag @user.avatar_url, alt: @user.display_name, class: "avatar-large-img" %>
+      <% else %>
+        <div class="avatar-large-placeholder">
+          <%= @user.display_name&.first || @user.username&.first || "U" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="profile-title-info">
+      <h1><%= @user.display_name || @user.username %></h1>
+      
+      <% if @user.location.present? %>
+        <p class="location">
+          <i class="fas fa-map-marker-alt"></i> <%= @user.location %>
+        </p>
+      <% end %>
+      
+      <% if @user.website_url.present? %>
+        <p class="website">
+          <i class="fas fa-link"></i> 
+          <%= link_to @user.website_url, @user.website_url, target: "_blank" %>
+        </p>
+      <% end %>
+      
+      <p class="join-date">
+        <i class="fas fa-calendar"></i> 
+        Joined <%= @user.join_date&.strftime("%B %Y") || @user.created_at.strftime("%B %Y") %>
+      </p>
+    </div>
+    
+    <% if user_signed_in? && current_user != @user %>
+      <div class="profile-actions">
+        <%= button_to "Follow", follow_profile_path(@user), class: "btn btn-primary" %>
+        <%= button_to "Message", new_message_path(recipient: @user), class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="profile-bio-section">
+  <h2>About</h2>
+  <p class="bio-text"><%= @user.bio.presence || "No bio provided." %></p>
+</div>
+
+<div class="profile-content-grid">
+  <%# Left Column %>
+  <div class="profile-left-column">
+    
+    <%# Experience Section %>
+    <div class="profile-section">
+      <h2>Experience</h2>
+      <% if @user.experiences.present? && @user.experiences.any? %>
+        <div class="experience-list">
+          <% @user.experiences.each do |exp| %>
+            <div class="experience-item">
+              <h3><%= exp.position %></h3>
+              <p class="company"><%= exp.company_name %></p>
+              <p class="date-range">
+                <%= exp.start_date.strftime("%B %Y") %> - 
+                <% if exp.is_current %>
+                  Present
+                <% else %>
+                  <%= exp.end_date.strftime("%B %Y") %>
+                <% end %>
+              </p>
+              <% if exp.description.present? %>
+                <p class="description"><%= exp.description %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No experience listed.</p>
+      <% end %>
+    </div>
+    
+    <%# Education Section %>
+    <div class="profile-section">
+      <h2>Education</h2>
+      <% if @user.educations.present? && @user.educations.any? %>
+        <div class="education-list">
+          <% @user.educations.each do |edu| %>
+            <div class="education-item">
+              <h3><%= edu.degree %> in <%= edu.field_of_study %></h3>
+              <p class="institution"><%= edu.institution %></p>
+              <p class="date-range">
+                <%= edu.start_date.strftime("%Y") %> - 
+                <%= edu.end_date.strftime("%Y") %>
+              </p>
+              <% if edu.description.present? %>
+                <p class="description"><%= edu.description %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No education listed.</p>
+      <% end %>
+    </div>
+    
+  </div>
+  
+  <%# Right Column %>
+  <div class="profile-right-column">
+    
+    <%# Skills Section %>
+    <div class="profile-section">
+      <h2>Skills</h2>
+      <% if @user.skills.present? && @user.skills.any? %>
+        <div class="skills-cloud">
+          <% @user.skills.each do |skill| %>
+            <span class="skill-tag-large"><%= skill %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No skills listed.</p>
+      <% end %>
+    </div>
+    
+    <%# Interests/Hobbies %>
+    <div class="profile-section">
+      <h2>Interests</h2>
+      <% if @user.interests.present? && @user.interests.any? %>
+        <div class="interests-list">
+          <% @user.interests.each do |interest| %>
+            <span class="interest-tag"><%= interest %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No interests listed.</p>
+      <% end %>
+    </div>
+    
+    <%# Social Links %>
+    <div class="profile-section">
+      <h2>Social Links</h2>
+      <% if @user.social_links.present? && @user.social_links.any? %>
+        <div class="social-links">
+          <% @user.social_links.each do |platform, link| %>
+            <%= link_to link, target: "_blank", class: "social-link" do %>
+              <i class="fab fa-<%= platform %>"></i> <%= platform.titleize %>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No social links provided.</p>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
