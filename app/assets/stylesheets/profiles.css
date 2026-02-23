@@ -3,25 +3,30 @@
 .profiles-grid {
   display: flex;
   flex-wrap: wrap;
-  margin: -10px;  /* Negative margin to offset card margins */
+  margin: -10px;
   padding: 20px;
+  justify-content: center; /* Center cards if they don't fill the width */
 }
 
 .profiles-grid > * {
-  flex: 0 0 calc(33.333% - 20px);  /* Exactly 3 per row with gap */
-  margin: 10px;  /* Creates gap between cards */
+  flex: 0 0 calc(30% - 20px); /* Reduced from 33.333% */
+  margin: 10px;
   box-sizing: border-box;
 }
 
-/* Responsive design */
+/* Optional: Add a min-width to prevent cards from getting too small */
+.profile-card {
+  min-width: 200px;
+}
+
 @media (max-width: 992px) {
   .profiles-grid > * {
-    flex: 0 0 calc(50% - 20px);  /* 2 per row on medium screens */
+    flex: 0 0 calc(45% - 20px); /* Adjusted for medium screens */
   }
 }
 
 @media (max-width: 576px) {
   .profiles-grid > * {
-    flex: 0 0 calc(100% - 20px);  /* 1 per row on mobile */
+    flex: 0 0 calc(100% - 20px); /* Full width on mobile */
   }
 }
