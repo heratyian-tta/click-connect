@@ -8,6 +8,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    @breadcrumbs = [
+      {content: "Projects", href: projects_path},
+      {content: @project.to_t},
+      {content: @project.to_u},
+    ]
   end
 
   # GET /projects/new
