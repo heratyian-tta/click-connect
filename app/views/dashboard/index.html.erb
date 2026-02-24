@@ -452,7 +452,7 @@
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
+      <td>John</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
@@ -471,5 +471,28 @@
   </tbody>
 </table>
         <div class="card-header">
+            <i class="fas fa-users"></i>
+            <span>New Team Members</span>
+        </div>
+        <div class="card-body">
+            <div class="person-result">
+                <table class="table">
+                    </div>
+  <thead>
+    <tr>
+      <th scope="col">count-pill</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= @user.first_name %> <%= @user.last_name %></td>
+      <td><button class="btn btn-sm btn-outline-primary">View Profile</button></td>
+    
+  </tbody>
+</table>
+
 </body>
 </html>
