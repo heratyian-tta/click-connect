@@ -4,6 +4,8 @@
     flex-wrap: wrap;
     gap: 6px;
     margin-top: 8px;
+    width: 100%;
+    min-width: 0;
   }
 
   .skill-tag {
