@@ -432,47 +432,188 @@
         </div>
     </div>
 
-    <div class="dashboard">
-        <div class="card">
-            <div class="card-header">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard Overview</span>
-                </div>
+ <!-- MAIN 3-COLUMN GRID -->
+  <div class="main-grid">
 
-    <div class="card-body">
-        <thead>
-    <tr>
-      <th scope="col">My Skills</th>
-    </tr>
-  </thead>
- <table class="table">
-  
-  <tbody>
-<div class="skills-container">
-  <span class="skill-tag blue">Networking</span>
-  <span class="skill-tag green">Problem Solving</span>
-  <span class="skill-tag purple">Ruby</span>
-  <span class="skill-tag amber">C++</span>
-  <span class="skill-tag rose">GitHub</span>
-  <span class="skill-tag blue">Self-motivated</span>
-</div>
-  </tbody>
-</table>
-        <div class="card-header">
-            <i class="fas fa-users"></i>
-            <span>New Team Members</span>
+    <!-- MY SKILLS -->
+    <div class="card">
+      <div class="card-title">My Skills</div>
+      <div class="skills-wrap">
+        <span class="skill-tag tag-orange">Networking</span>
+        <span class="skill-tag tag-green">Problem Solving</span>
+        <span class="skill-tag tag-purple">Ruby</span>
+        <span class="skill-tag tag-blue">C++</span>
+        <span class="skill-tag tag-gray">GitHub</span>
+        <span class="skill-tag tag-gray">Self-motivated</span>
+      </div>
+      <div class="skill-bar-wrap" style="margin-top:16px;">
+        <div class="skill-bar-row">
+          <span class="skill-bar-label">Networking</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;"></div></div>
         </div>
-        <div class="card-body">
-            <div class="person-result">
-                <table class="table">
-                    </div>
-  <thead>
-    <tr>
-      <th scope="col">count-pill</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">Profile</th>
-    </tr>
-  </thead>
+        <div class="skill-bar-row">
+          <span class="skill-bar-label">Ruby</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;background:#7c4fa0;"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-bar-label">C++</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%;background:#2a5ca8;"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <span class="skill-bar-label">GitHub</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:#2a6b5c;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW TEAM MEMBERS -->
+    <div class="card">
+      <div class="card-title">New Team Members</div>
+      <div class="member-row">
+        <div class="avatar av1">AE</div>
+        <div style="flex:1">
+          <div class="member-name">Alice Example</div>
+          <div class="member-role">Full-Stack Developer</div>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+      <div class="member-row">
+        <div class="avatar av2">JB</div>
+        <div style="flex:1">
+          <div class="member-name">James Brown</div>
+          <div class="member-role">UI Designer</div>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+      <div class="member-row">
+        <div class="avatar av3">SM</div>
+        <div style="flex:1">
+          <div class="member-name">Sara Ming</div>
+          <div class="member-role">Data Analyst</div>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+      <div class="member-row">
+        <div class="avatar av4">TK</div>
+        <div style="flex:1">
+          <div class="member-name">Tom Kirk</div>
+          <div class="member-role">Backend Engineer</div>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="card">
+      <div class="card-title">Recent Activity</div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background:#c8460a;"></div>
+        <div>
+          <div class="activity-text"><strong>You</strong> joined project <strong>OpenBridge v2</strong></div>
+          <div class="activity-time">2 hours ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background:#2a6b5c;"></div>
+        <div>
+          <div class="activity-text"><strong>James Brown</strong> connected with you</div>
+          <div class="activity-time">Yesterday at 4:12 PM</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background:#7c4fa0;"></div>
+        <div>
+          <div class="activity-text"><strong>You</strong> added skill <strong>C++</strong></div>
+          <div class="activity-time">2 days ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background:#2a5ca8;"></div>
+        <div>
+          <div class="activity-text"><strong>Sara Ming</strong> commented on <strong>your profile</strong></div>
+          <div class="activity-time">3 days ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background:#888;"></div>
+        <div>
+          <div class="activity-text"><strong>You</strong> completed profile setup</div>
+          <div class="activity-time">Feb 20</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE COMPLETION (spans 2 cols) -->
+    <div class="card profile-completion">
+      <div class="card-title">Profile Completion</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:1.6rem;font-weight:600;">78%</span>
+        <span style="font-size:0.75rem;color:var(--ink2);">4 of 5 sections complete</span>
+      </div>
+      <div class="completion-bar-wrap">
+        <div class="completion-seg filled"></div>
+        <div class="completion-seg filled"></div>
+        <div class="completion-seg filled"></div>
+        <div class="completion-seg filled"></div>
+        <div class="completion-seg partial"></div>
+        <div class="completion-seg"></div>
+        <div class="completion-seg"></div>
+        <div class="completion-seg"></div>
+        <div class="completion-seg"></div>
+        <div class="completion-seg"></div>
+      </div>
+      <div class="completion-items">
+        <div class="completion-item done"><span class="check">✓</span> Basic Info</div>
+        <div class="completion-item done"><span class="check">✓</span> Skills Added</div>
+        <div class="completion-item done"><span class="check">✓</span> Photo Uploaded</div>
+        <div class="completion-item done"><span class="check">✓</span> Joined a Project</div>
+        <div class="completion-item"><span class="check" style="color:#ccc;">○</span> Bio / Description</div>
+      </div>
+    </div>
+
+    <!-- UPCOMING DEADLINES -->
+    <div class="card">
+      <div class="card-title">Upcoming Deadlines</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:8px;background:var(--surface2);border-radius:8px;">
+          <div style="text-align:center;min-width:36px;">
+            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
+            <div style="font-size:1.1rem;font-weight:600;line-height:1;">02</div>
+          </div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:500;">OpenBridge v2 Sprint</div>
+            <div style="font-size:0.72rem;color:var(--ink2);">5 days left · Backend task</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;">
+          <div style="text-align:center;min-width:36px;">
+            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
+            <div style="font-size:1.1rem;font-weight:600;line-height:1;">10</div>
+          </div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:500;">Portfolio Review</div>
+            <div style="font-size:0.72rem;color:var(--ink2);">13 days left · All members</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;">
+          <div style="text-align:center;min-width:36px;">
+            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
+            <div style="font-size:1.1rem;font-weight:600;line-height:1;">18</div>
+          </div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:500;">Team Check-in Meeting</div>
+            <div style="font-size:0.72rem;color:var(--ink2);">21 days left · Virtual</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</body>
+</html>
+
+
   <tbody>
     <tr>
       <th scope="row">1</th>
