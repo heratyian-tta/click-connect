@@ -82,16 +82,14 @@
 
   /* NAV */
   nav {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 3rem;
+  margin: 1rem 3rem; /* gives floating effect */
+  background: #ffffff;
+  border-radius: 14px; /* rounds the entire navbar */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
   .logo {
     font-family: 'Fraunces', serif;
@@ -141,41 +139,6 @@
   }
   .welcome-banner h1 span { font-style: italic; color: #f0a07a; }
   .welcome-meta { font-size: 0.8rem; color: #888; }
-
-  /* STATS ROW */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    animation: fadeSlideUp 0.5s ease both;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-  .stat-card:nth-child(1) { animation-delay: 0.1s; }
-  .stat-card:nth-child(2) { animation-delay: 0.15s; }
-  .stat-card:nth-child(3) { animation-delay: 0.2s; }
-  .stat-card:nth-child(4) { animation-delay: 0.25s; }
-  .stat-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0;
-  }
-  .stat-icon.orange { background: #fff0eb; }
-  .stat-icon.green { background: #eaf4f1; }
-  .stat-icon.purple { background: #f3edf8; }
-  .stat-icon.blue { background: #eaf0fb; }
-  .stat-num { font-size: 1.5rem; font-weight: 600; line-height: 1; }
-  .stat-label { font-size: 0.75rem; color: var(--ink2); margin-top: 2px; }
 
   /* MAIN GRID */
   .main-grid {
