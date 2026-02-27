@@ -1,54 +1,60 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light m-4">
   <%= link_to "Click Connect", root_path, class: "navbar-brand" %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <button class="navbar-toggler" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <%= link_to "Home", root_path, class: "nav-link active", aria: { current: "page" } %>
+      </li>
+
+      <%# OPTIMIZE: current_page?(action: 'home', controller: 'pages') not working correctly with devise routes %>
+      <% if current_page?('/') %>
         <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link active", aria: { current: "page" } %>
+          <a class="nav-link" href="#features">Features</a>
         </li>
-        <%# OPTIMIZE: current_page?(action: 'home', controller: 'pages') not working correctly with devise routes %>
-        <% if current_page?('/') %>
-          <li class="nav-item">
-            <a class="nav-link" href="#features">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#demo">How it works</a>
-          </li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Skills", skills_path, class: "nav-link" %>
-            </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#demo">How it works</a>
+        </li>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Skills", skills_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
           <%= link_to "Projects", projects_path, class: "nav-link" %>
-            </li>
-            <%= link_to "Profiles", profiles_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Profiles", profiles_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
 
-      <ul class="navbar-nav">
-        <% if user_signed_in? %>
-          <li class="nav-item me-2">
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-          </li>
-
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-          </li>
-
-        <% end %>
-
-      </ul>
-    </div>
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li class="nav-item me-2">
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </nav>
