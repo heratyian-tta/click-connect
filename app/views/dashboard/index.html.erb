@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,612 +6,145 @@
     <title>Click Connect · internal skills & projects</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
 
-        body {
-            background: #f2f6fb;
-            color: #1a2b3e;
-            line-height: 1.5;
-            padding: 1.8rem 1.5rem;
-        }
-
-        .app-container {a
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* header */
-        .top-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: #0f3b5e;
-        }
-
-        .logo i {
-            color: #2b6c9e;
-        }
-
-        .user-badge {
-            background: white;
-            border-radius: 40px;
-            padding: 0.5rem 1.5rem 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 12px rgba(0,30,60,0.08);
-        }
-
-        .user-badge i {
-            font-size: 1.8rem;
-            color: #1f5f92;
-        }
-
-        /* main 3‑column grid */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1.2fr 1.9fr 1.2fr;
-            gap: 1.8rem;
-            align-items: start;
-        }
-
-        /* universal card style */
-        .card {
-            background: white;
-            border-radius: 2rem;
-            padding: 1.6rem 1.5rem;
-            box-shadow: 0 10px 28px -8px rgba(0,40,70,0.12);
-            margin-bottom: 1.8rem;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 1.4rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #1d435e;
-            border-bottom: 2px solid #e9f0f7;
-            padding-bottom: 0.6rem;
-        }
-
-        .card-header i {
-            color: #336fa3;
-            width: 2rem;
-        }
-
-        /* search row */
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: #f0f5fc;
-            border-radius: 3rem;
-            padding: 0.2rem 0.2rem 0.2rem 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-box i {
-            color: #597faa;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            padding: 0.8rem 0.6rem;
-            width: 100%;
-            outline: none;
-            font-size: 0.95rem;
-        }
-
-        .search-box button {
-            background: #1e4f8a;
-            border: none;
-            color: white;
-            font-weight: 500;
-            padding: 0.6rem 1.6rem;
-            border-radius: 3rem;
-            cursor: pointer;
-            transition: 0.1s;
-            white-space: nowrap;
-        }
-
-        .search-box button:hover {
-            background: #123f6e;
-        }
-
-        /* skill chips & results */
-        .skill-chip {
-            background: #e4eefa;
-            padding: 0.45rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 0.25rem;
-            border: 1px solid #c5d9f0;
-        }
-
-        .person-result {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 0.5rem;
-            border-bottom: 1px solid #e5eef9;
-        }
-
-        .person-result:last-child {
-            border-bottom: none;
-        }
-
-        .result-avatar {
-            width: 46px;
-            height: 46px;
-            background: linear-gradient(145deg, #4177b0, #1f4f82);
-            border-radius: 40%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-        }
-
-        .result-info h4 {
-            font-size: 1rem;
-            font-weight: 650;
-        }
-
-        .result-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 4px;
-        }
-
-        .mini-skill {
-            background: #d9e6f5;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.7rem;
-            border-radius: 30px;
-        }
-
-        /* editable skill list (my skills) */
-        .my-skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin: 1rem 0 1.2rem;
-        }
-
-        .skill-item {
-            background: #e1effb;
-            padding: 0.4rem 1.2rem 0.4rem 1.4rem;
-            border-radius: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .skill-item i {
-            color: #b22234; /* remove icon tone */
-            cursor: pointer;
-            opacity: 0.7;
-            transition: 0.1s;
-            font-size: 1rem;
-        }
-
-        .skill-item i:hover {
-            opacity: 1;
-            color: #c0392b;
-        }
-
-        .add-skill-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .add-skill-form input {
-            flex: 1;
-            padding: 0.7rem 1.2rem;
-            border: 1px solid #cbdbe9;
-            border-radius: 40px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .add-skill-form button {
-            background: #1e4f8a;
-            border: none;
-            color: white;
-            padding: 0 1.6rem;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* project cards (editable) */
-        .project-card {
-            background: #f8fbfe;
-            border-radius: 1.5rem;
-            padding: 1.2rem 1.3rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid #dae6f2;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.4rem;
-        }
-
-        .project-header h4 {
-            font-size: 1.1rem;
-            font-weight: 650;
-        }
-
-        .project-actions i {
-            margin-left: 0.7rem;
-            color: #6585a6;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .project-actions i:hover {
-            color: #1f4f82;
-        }
-
-        .project-meta {
-            font-size: 0.8rem;
-            color: #3e6a91;
-            margin-bottom: 0.6rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: #2d4b6b;
-            margin: 0.6rem 0 0.8rem;
-        }
-
-        .project-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .project-skill-tag {
-            background: #c9dff5;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .btn-add-project {
-            background: white;
-            border: 2px dashed #769dc0;
-            color: #1f4a74;
-            padding: 0.9rem;
-            border-radius: 2rem;
-            text-align: center;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: 0.1s;
-        }
-
-        .btn-add-project i {
-            margin-right: 8px;
-        }
-
-        .btn-add-project:hover {
-            background: #ebf3fc;
-        }
-
-        /* modal (hidden by default) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 2.5rem;
-            padding: 2.2rem 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 30px 50px rgba(0,30,60,0.4);
-        }
-
-        .modal-content h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            color: #123454;
-        }
-
-        .modal-content input, .modal-content textarea, .modal-content select {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            margin-bottom: 1rem;
-            border: 1px solid #b9cfeb;
-            border-radius: 40px;
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .modal-content textarea {
-            border-radius: 1.5rem;
-            resize: vertical;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-        }
-
-        .modal-actions button {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .modal-actions .btn-save {
-            background: #1e4f8a;
-            color: white;
-        }
-
-        .modal-actions .btn-cancel {
-            background: #e2ecf9;
-            color: #1f3b57;
-        }
-
-        hr {
-            border: 1px solid #dbe8f2;
-            margin: 1rem 0;
-        }
-
-        .info-note {
-            font-size: 0.8rem;
-            color: #597b9c;
-            margin-top: 0.4rem;
-        }
-
-        @media (max-width: 1000px) {
-            .dashboard { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
-<div class="app-container">
-    <!-- top bar (static) -->
+  <div class="app-container">
+
+    <!-- Top Bar -->
     <div class="top-bar">
-        <div class="user-badge">
-            <i class="fas fa-circle-user"></i>
-            <span> <div class="dashboard">
-                <strong>Welcome, <%= @user.first_name %></strong>
-                </span>
-        </div>
-    </div>
-
- <!-- MAIN 3-COLUMN GRID -->
-  <div class="main-grid">
-
-    <!-- MY SKILLS -->
-    <div class="card">
-      <div class="card-title">My Skills</div>
-      <div class="skills-wrap">
-        <span class="skill-tag tag-orange">Networking</span>
-        <span class="skill-tag tag-green">Problem Solving</span>
-        <span class="skill-tag tag-purple">Ruby</span>
-        <span class="skill-tag tag-blue">C++</span>
-        <span class="skill-tag tag-gray">GitHub</span>
-        <span class="skill-tag tag-gray">Self-motivated</span>
-      </div>
-      <div class="skill-bar-wrap" style="margin-top:16px;">
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Networking</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Ruby</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;background:#7c4fa0;"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">C++</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%;background:#2a5ca8;"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">GitHub</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:#2a6b5c;"></div></div>
-        </div>
+      <div class="user-badge">
+        <i class="fas fa-circle-user"></i>
+        <span>
+          <strong>Welcome, <%= @user.first_name %></strong>
+        </span>
       </div>
     </div>
 
-    <!-- NEW TEAM MEMBERS -->
-    <div class="card">
-      <div class="card-title">New Team Members</div>
-      <div class="member-row">
-        <div class="avatar av1">AE</div>
-        <div style="flex:1">
-          <div class="member-name">Alice Example</div>
-          <div class="member-role">Full-Stack Developer</div>
-        </div>
-        <button class="view-btn">View</button>
-      </div>
-      <div class="member-row">
-        <div class="avatar av2">JB</div>
-        <div style="flex:1">
-          <div class="member-name">James Brown</div>
-          <div class="member-role">UI Designer</div>
-        </div>
-        <button class="view-btn">View</button>
-      </div>
-      <div class="member-row">
-        <div class="avatar av3">SM</div>
-        <div style="flex:1">
-          <div class="member-name">Sara Ming</div>
-          <div class="member-role">Data Analyst</div>
-        </div>
-        <button class="view-btn">View</button>
-      </div>
-      <div class="member-row">
-        <div class="avatar av4">TK</div>
-        <div style="flex:1">
-          <div class="member-name">Tom Kirk</div>
-          <div class="member-role">Backend Engineer</div>
-        </div>
-        <button class="view-btn">View</button>
-      </div>
-    </div>
+    <!-- Main 3-Column Grid -->
+    <div class="main-grid">
 
-    <!-- RECENT ACTIVITY -->
-    <div class="card">
-      <div class="card-title">Recent Activity</div>
-      <div class="activity-item">
-        <div class="activity-dot" style="background:#c8460a;"></div>
-        <div>
-          <div class="activity-text"><strong>You</strong> joined project <strong>OpenBridge v2</strong></div>
-          <div class="activity-time">2 hours ago</div>
+      <!-- My Skills -->
+      <div class="card">
+        <div class="card-title">My Skills</div>
+        <div class="skills-wrap">
+          <span class="skill-tag tag-orange">Networking</span>
+          <span class="skill-tag tag-green">Problem Solving</span>
+          <span class="skill-tag tag-purple">Ruby</span>
+          <span class="skill-tag tag-blue">C++</span>
+          <span class="skill-tag tag-gray">GitHub</span>
+          <span class="skill-tag tag-gray">Self-motivated</span>
         </div>
-      </div>
-      <div class="activity-item">
-        <div class="activity-dot" style="background:#2a6b5c;"></div>
-        <div>
-          <div class="activity-text"><strong>James Brown</strong> connected with you</div>
-          <div class="activity-time">Yesterday at 4:12 PM</div>
-        </div>
-      </div>
-      <div class="activity-item">
-        <div class="activity-dot" style="background:#7c4fa0;"></div>
-        <div>
-          <div class="activity-text"><strong>You</strong> added skill <strong>C++</strong></div>
-          <div class="activity-time">2 days ago</div>
-        </div>
-      </div>
-      <div class="activity-item">
-        <div class="activity-dot" style="background:#2a5ca8;"></div>
-        <div>
-          <div class="activity-text"><strong>Sara Ming</strong> commented on <strong>your profile</strong></div>
-          <div class="activity-time">3 days ago</div>
-        </div>
-      </div>
-      <div class="activity-item">
-        <div class="activity-dot" style="background:#888;"></div>
-        <div>
-          <div class="activity-text"><strong>You</strong> completed profile setup</div>
-          <div class="activity-time">Feb 20</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROFILE COMPLETION (spans 2 cols) -->
-    <div class="card profile-completion">
-      <div class="card-title">Profile Completion</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <span style="font-size:1.6rem;font-weight:600;">78%</span>
-        <span style="font-size:0.75rem;color:var(--ink2);">4 of 5 sections complete</span>
-      </div>
-      <div class="completion-bar-wrap">
-        <div class="completion-seg filled"></div>
-        <div class="completion-seg filled"></div>
-        <div class="completion-seg filled"></div>
-        <div class="completion-seg filled"></div>
-        <div class="completion-seg partial"></div>
-        <div class="completion-seg"></div>
-        <div class="completion-seg"></div>
-        <div class="completion-seg"></div>
-        <div class="completion-seg"></div>
-        <div class="completion-seg"></div>
-      </div>
-      <div class="completion-items">
-        <div class="completion-item done"><span class="check">✓</span> Basic Info</div>
-        <div class="completion-item done"><span class="check">✓</span> Skills Added</div>
-        <div class="completion-item done"><span class="check">✓</span> Photo Uploaded</div>
-        <div class="completion-item done"><span class="check">✓</span> Joined a Project</div>
-        <div class="completion-item"><span class="check" style="color:#ccc;">○</span> Bio / Description</div>
-      </div>
-    </div>
-
-    <!-- UPCOMING DEADLINES -->
-    <div class="card">
-      <div class="card-title">Upcoming Deadlines</div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:12px;padding:8px;background:var(--surface2);border-radius:8px;">
-          <div style="text-align:center;min-width:36px;">
-            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
-            <div style="font-size:1.1rem;font-weight:600;line-height:1;">02</div>
+        <div class="skill-bar-wrap" style="margin-top: 16px;">
+          <div class="skill-bar-row">
+            <span class="skill-bar-label">Networking</span>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 85%;"></div>
+            </div>
           </div>
+          <div class="skill-bar-row">
+            <span class="skill-bar-label">Ruby</span>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 70%; background: #7c4fa0;"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <span class="skill-bar-label">C++</span>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 55%; background: #2a5ca8;"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <span class="skill-bar-label">GitHub</span>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 90%; background: #2a6b5c;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Projects -->
+      <div class="card">
+        <div class="card-title">My Projects</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; background: var(--surface2); border-radius: 8px;">
+            <div style="text-align: center; min-width: 36px;">
+              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
+              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">02</div>
+            </div>
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 500;">OpenBridge v2 Sprint</div>
+              <div style="font-size: 0.72rem; color: var(--ink2);">5 days left · Backend task</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 8px;">
+            <div style="text-align: center; min-width: 36px;">
+              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
+              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">10</div>
+            </div>
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 500;">Portfolio Review</div>
+              <div style="font-size: 0.72rem; color: var(--ink2);">13 days left · All members</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 8px;">
+            <div style="text-align: center; min-width: 36px;">
+              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
+              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">18</div>
+            </div>
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 500;">Team Check-in Meeting</div>
+              <div style="font-size: 0.72rem; color: var(--ink2);">21 days left · Virtual</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="card-title">Recent Activity</div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #c8460a;"></div>
           <div>
-            <div style="font-size:0.82rem;font-weight:500;">OpenBridge v2 Sprint</div>
-            <div style="font-size:0.72rem;color:var(--ink2);">5 days left · Backend task</div>
+            <div class="activity-text"><strong>You</strong> joined project <strong>OpenBridge v2</strong></div>
+            <div class="activity-time">2 hours ago</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;">
-          <div style="text-align:center;min-width:36px;">
-            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
-            <div style="font-size:1.1rem;font-weight:600;line-height:1;">10</div>
-          </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #2a6b5c;"></div>
           <div>
-            <div style="font-size:0.82rem;font-weight:500;">Portfolio Review</div>
-            <div style="font-size:0.72rem;color:var(--ink2);">13 days left · All members</div>
+            <div class="activity-text"><strong>James Brown</strong> connected with you</div>
+            <div class="activity-time">Yesterday at 4:12 PM</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;">
-          <div style="text-align:center;min-width:36px;">
-            <div style="font-size:0.6rem;text-transform:uppercase;color:var(--ink2);">Mar</div>
-            <div style="font-size:1.1rem;font-weight:600;line-height:1;">18</div>
-          </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #7c4fa0;"></div>
           <div>
-            <div style="font-size:0.82rem;font-weight:500;">Team Check-in Meeting</div>
-            <div style="font-size:0.72rem;color:var(--ink2);">21 days left · Virtual</div>
+            <div class="activity-text"><strong>You</strong> added skill <strong>C++</strong></div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #2a5ca8;"></div>
+          <div>
+            <div class="activity-text"><strong>Sara Ming</strong> commented on <strong>your profile</strong></div>
+            <div class="activity-time">3 days ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #888;"></div>
+          <div>
+            <div class="activity-text"><strong>You</strong> completed profile setup</div>
+            <div class="activity-time">Feb 20</div>
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</main>
-</body>
-</html>
-
-</table>
-
+    </div><!-- /.main-grid -->
+  </div><!-- /.app-container -->
 </body>
 </html>
