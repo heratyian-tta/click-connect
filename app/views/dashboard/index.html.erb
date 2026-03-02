@@ -24,44 +24,41 @@
     <!-- Main 3-Column Grid -->
     <div class="main-grid">
 
-      <!-- My Skills -->
-      <div class="card">
-        <div class="card-title">My Skills</div>
-        <div class="skills-wrap">
-          <span class="skill-tag tag-orange">Networking</span>
-          <span class="skill-tag tag-green">Problem Solving</span>
-          <span class="skill-tag tag-purple">Ruby</span>
-          <span class="skill-tag tag-blue">C++</span>
-          <span class="skill-tag tag-gray">GitHub</span>
-          <span class="skill-tag tag-gray">Self-motivated</span>
-        </div>
-        <div class="skill-bar-wrap" style="margin-top: 16px;">
-          <div class="skill-bar-row">
-            <span class="skill-bar-label">Networking</span>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" style="width: 85%;"></div>
-            </div>
-          </div>
-          <div class="skill-bar-row">
-            <span class="skill-bar-label">Ruby</span>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" style="width: 70%; background: #7c4fa0;"></div>
-            </div>
-          </div>
-          <div class="skill-bar-row">
-            <span class="skill-bar-label">C++</span>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" style="width: 55%; background: #2a5ca8;"></div>
-            </div>
-          </div>
-          <div class="skill-bar-row">
-            <span class="skill-bar-label">GitHub</span>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" style="width: 90%; background: #2a6b5c;"></div>
-            </div>
+  <!-- My Skills -->
+<div class="card">
+  <div class="card-title">My Skills</div>
+
+  <% if @skills.any? %>
+    <!-- Skill Tags -->
+    <div class="skills-wrap">
+      <% tag_colors = ["tag-orange", "tag-green", "tag-purple", "tag-blue", "tag-gray"] %>
+      <% @skills.each_with_index do |skill, index| %>
+        <span class="skill-tag <%= tag_colors[index % tag_colors.length] %>">
+          <%= skill.name.titleize %>
+        </span>
+      <% end %>
+    </div>
+
+    <!-- Skill Bars -->
+    <% bar_colors = ["#c8460a", "#7c4fa0", "#2a5ca8", "#2a6b5c", "#888"] %>
+    <div class="skill-bar-wrap" style="margin-top: 16px;">
+      <% @skills.first(5).each_with_index do |skill, index| %>
+        <div class="skill-bar-row">
+          <span class="skill-bar-label"><%= skill.name.titleize %></span>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width: <%= [45, 55, 70, 80, 90][index % 5] %>%; background: <%= bar_colors[index % bar_colors.length] %>;"></div>
           </div>
         </div>
-      </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <div style="font-size: 0.85rem; color: #888; text-align: center; padding: 20px 0;">
+      No skills yet — <%= link_to "add some", edit_user_registration_path %>!
+    </div>
+  <% end %>
+
+</div>
 
       <!-- My Projects -->
 <div class="card">

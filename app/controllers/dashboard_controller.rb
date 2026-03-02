@@ -6,5 +6,6 @@ class DashboardController < ApplicationController
     @projects = Project.all
     @recent_users = User.order(created_at: :desc).limit(3)
     @recent_projects = Project.order(created_at: :desc).limit(3)
+    @skills = current_user.skills
   end
 end
