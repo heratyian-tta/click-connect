@@ -3,5 +3,8 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
+    @projects = Project.all
+    @recent_users = User.order(created_at: :desc).limit(3)
+    @recent_projects = Project.order(created_at: :desc).limit(3)
   end
 end

@@ -64,85 +64,65 @@
       </div>
 
       <!-- My Projects -->
-      <div class="card">
-        <div class="card-title">My Projects</div>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
+<div class="card">
+  <div class="card-title"> All Projects</div>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
 
-          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; background: var(--surface2); border-radius: 8px;">
-            <div style="text-align: center; min-width: 36px;">
-              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
-              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">02</div>
+    <% if @projects.any? %>
+      <% @projects.first(5).each do |project| %>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 8px; background: var(--surface2); border-radius: 8px;">
+          <div style="text-align: center; min-width: 36px;">
+            <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">
+              <%= project.created_at.strftime("%b") %>
             </div>
-            <div>
-              <div style="font-size: 0.82rem; font-weight: 500;">OpenBridge v2 Sprint</div>
-              <div style="font-size: 0.72rem; color: var(--ink2);">5 days left · Backend task</div>
+            <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">
+              <%= project.created_at.strftime("%d") %>
             </div>
           </div>
-
-          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 8px;">
-            <div style="text-align: center; min-width: 36px;">
-              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
-              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">10</div>
+          <div>
+            <div style="font-size: 0.82rem; font-weight: 500;">
+              <%= link_to project.title, project, style: "text-decoration: none; color: inherit;" %>
             </div>
-            <div>
-              <div style="font-size: 0.82rem; font-weight: 500;">Portfolio Review</div>
-              <div style="font-size: 0.72rem; color: var(--ink2);">13 days left · All members</div>
+            <div style="font-size: 0.72rem; color: var(--ink2);">
+              <%= truncate(project.description, length: 40) %>
             </div>
           </div>
-
-          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 8px;">
-            <div style="text-align: center; min-width: 36px;">
-              <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--ink2);">Mar</div>
-              <div style="font-size: 1.1rem; font-weight: 600; line-height: 1;">18</div>
-            </div>
-            <div>
-              <div style="font-size: 0.82rem; font-weight: 500;">Team Check-in Meeting</div>
-              <div style="font-size: 0.72rem; color: var(--ink2);">21 days left · Virtual</div>
-            </div>
-          </div>
-
         </div>
+      <% end %>
+    <% else %>
+      <div style="font-size: 0.85rem; color: #888; text-align: center; padding: 20px 0;">
+        No projects yet — <%= link_to "add one", new_project_path %>!
       </div>
+    <% end %>
 
-      <!-- Recent Activity -->
-      <div class="card">
-        <div class="card-title">Recent Activity</div>
-        <div class="activity-item">
-          <div class="activity-dot" style="background: #c8460a;"></div>
-          <div>
-            <div class="activity-text"><strong>You</strong> joined project <strong>OpenBridge v2</strong></div>
-            <div class="activity-time">2 hours ago</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-dot" style="background: #2a6b5c;"></div>
-          <div>
-            <div class="activity-text"><strong>James Brown</strong> connected with you</div>
-            <div class="activity-time">Yesterday at 4:12 PM</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-dot" style="background: #7c4fa0;"></div>
-          <div>
-            <div class="activity-text"><strong>You</strong> added skill <strong>C++</strong></div>
-            <div class="activity-time">2 days ago</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-dot" style="background: #2a5ca8;"></div>
-          <div>
-            <div class="activity-text"><strong>Sara Ming</strong> commented on <strong>your profile</strong></div>
-            <div class="activity-time">3 days ago</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-dot" style="background: #888;"></div>
-          <div>
-            <div class="activity-text"><strong>You</strong> completed profile setup</div>
-            <div class="activity-time">Feb 20</div>
-          </div>
-        </div>
+  </div>
+</div>
+
+     <!-- Recent Activity -->
+<div class="card">
+  <div class="card-title">Recent Activity</div>
+
+  <% @recent_users.each do |user| %>
+    <div class="activity-item">
+      <div class="activity-dot" style="background: #2a6b5c;"></div>
+      <div>
+        <div class="activity-text"><strong><%= user.full_name %></strong> joined Click Connect</div>
+        <div class="activity-time"><%= time_ago_in_words(user.created_at) %> ago</div>
       </div>
+    </div>
+  <% end %>
+
+  <% @recent_projects.each do |project| %>
+    <div class="activity-item">
+      <div class="activity-dot" style="background: #c8460a;"></div>
+      <div>
+        <div class="activity-text"><strong><%= project.title %></strong> was added</div>
+        <div class="activity-time"><%= time_ago_in_words(project.created_at) %> ago</div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
 
     </div><!-- /.main-grid -->
   </div><!-- /.app-container -->

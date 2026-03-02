@@ -1,90 +1,107 @@
-
 <div class="row">
-<div class="offset-md-3 col-md-6">
-  <div class="card mb-3">
-    <h5 class="card-header">
-      Edit <%= resource_name.to_s.humanize %>
-    </h5>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
-
-<div class="card-body" >
-<div class="field">
-  <%= f.label :current_password %><br />
-  <%= f.password_field :current_password, autocomplete: "current-password" %>
-      <small class="form-text text-muted">
-            We need your current password to confirm any changes.
-          </small>
-        </div>
-        </div>
-
-<div class="field">
-  <%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-</div>
-
-<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-<% end %>
-
-  <div class="my-3 form-check">
-    <%= f.label :skills, class: "form-check-label" %>
-    <%= f.collection_checkboxes :skill_ids, Skill.all, :id, :name do |b| %>
-      <div class="form-check">
-        <%= b.check_box(class: "form-check-input") %>
-        <%= b.label(class: "form-check-label") %>
+  <div class="offset-md-2 col-md-8">
+    <div class="card mb-3" style="border-radius: 16px; border: none; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+      
+      <!-- Header -->
+      <div class="card-header" style="background: white; border-bottom: 1px solid #eee; border-radius: 16px 16px 0 0; padding: 24px;">
+        <h4 style="margin: 0; font-weight: 600;">Edit Profile</h4>
+        <p style="margin: 4px 0 0; color: #888; font-size: 0.85rem;">Update your personal information, skills and projects</p>
       </div>
-    <% end %>
-  </div>
 
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="my-3">
-  <%= f.label :first_name, class: "form-label" %>
-  <%= f.text_field :first_name, class: "form-control" %>
-</div>
+        <div class="card-body" style="padding: 28px;">
 
-<div class="my-3">
-  <%= f.label :last_name, class: "form-label" %>
-  <%= f.text_field :last_name, class: "form-control" %>
-</div>
+          <!-- Personal Info Section -->
+          <h6 style="text-transform: uppercase; letter-spacing: 0.08em; color: #e05a2b; font-size: 0.75rem; margin-bottom: 16px;">● Personal Info</h6>
 
+          <div class="row">
+            <div class="col-md-6 my-2">
+              <%= f.label :first_name, class: "form-label" %>
+              <%= f.text_field :first_name, class: "form-control", style: "border-radius: 8px;" %>
+            </div>
+            <div class="col-md-6 my-2">
+              <%= f.label :last_name, class: "form-label" %>
+              <%= f.text_field :last_name, class: "form-control", style: "border-radius: 8px;" %>
+            </div>
+          </div>
 
-<div class="my-3">
-    <%= f.label :bio, class: "form-label" %>
-    <%= f.text_area :bio, class: "form-control" %>
-</div>
+          <div class="my-3">
+            <%= f.label :bio, class: "form-label" %>
+            <%= f.text_area :bio, class: "form-control", rows: 3, placeholder: "Tell people a bit about yourself...", style: "border-radius: 8px;" %>
+          </div>
 
+          <hr style="margin: 24px 0;">
 
-<div class="my-3">
-  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, autocomplete: "new-password" %>
-  <% if @minimum_password_length %>
-    <br />
-    <em><%= @minimum_password_length %> characters minimum</em>
-  <% end %>
-</div>
+          <!-- Skills Section -->
+          <h6 style="text-transform: uppercase; letter-spacing: 0.08em; color: #3b7ed4; font-size: 0.75rem; margin-bottom: 16px;">● Skills</h6>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+            <%= f.collection_checkboxes :skill_ids, Skill.all, :id, :name do |b| %>
+              <label style="
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                background: #f0f4ff;
+                border: 1px solid #c5d5f5;
+                border-radius: 20px;
+                padding: 4px 12px;
+                font-size: 0.8rem;
+                cursor: pointer;
+              ">
+                <%= b.check_box %>
+                <%= b.text %>
+              </label>
+            <% end %>
+          </div>
 
-<div class="field">
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-</div>
-    <div class="card-body">
-  <div class="d-grid">
-          <%= f.submit "Update", class: "btn btn-outline-primary" %>
-        </div> 
+          <hr style="margin: 24px 0;">
+
+          <!-- Account Section -->
+          <h6 style="text-transform: uppercase; letter-spacing: 0.08em; color: #888; font-size: 0.75rem; margin-bottom: 16px;">● Account & Security</h6>
+
+          <div class="my-3">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "border-radius: 8px;" %>
+          </div>
+
+          <div class="my-3">
+            <%= f.label :password, class: "form-label" %>
+            <i style="font-size: 0.8rem; color: #888;">(leave blank if you don't want to change it)</i>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", style: "border-radius: 8px;" %>
+            <% if @minimum_password_length %>
+              <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
+            <% end %>
+          </div>
+
+          <div class="my-3">
+            <%= f.label :password_confirmation, class: "form-label" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", style: "border-radius: 8px;" %>
+          </div>
+
+          <div class="my-3">
+            <%= f.label :current_password, class: "form-label" %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", style: "border-radius: 8px;" %>
+            <small class="form-text text-muted">We need your current password to confirm any changes.</small>
+          </div>
+
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="card-footer" style="background: white; border-top: 1px solid #eee; border-radius: 0 0 16px 16px; padding: 20px 28px;">
+          <div class="d-flex gap-2">
+            <%= f.submit "Save Changes", class: "btn btn-primary", style: "border-radius: 8px; padding: 8px 24px;" %>
+            <%= link_to "Back", :back, class: "btn btn-outline-secondary", style: "border-radius: 8px; padding: 8px 24px;" %>
+          </div>
+        </div>
+
       <% end %>
 
-        <div class="d-grid">
-          <%= link_to "Back", :back, class: "btn btn-outline-secondary" %>
-        </div>
-    </div>
-
-    <div class="card-footer">
-      <div class="d-grid">
-        <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-link", method: :delete %>
+      <!-- Cancel Account -->
+      <div style="padding: 12px 28px 20px; text-align: center;">
+        <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-link text-danger", style: "font-size: 0.8rem;", method: :delete %>
       </div>
+
     </div>
   </div>
-</div>
 </div>
