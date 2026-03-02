@@ -2,7 +2,6 @@
   <% if project.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
       <ul>
         <% project.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -12,8 +11,14 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :title, "Project Name", style: "display: block" %>
+    <%= form.text_field :title, placeholder: "Enter project name" %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Project Details", style: "display: block" %>
+    <%= form.text_area :description, placeholder: "Describe your project...", rows: 5 %>
+  </div>
 
   <div>
     <%= form.submit %>

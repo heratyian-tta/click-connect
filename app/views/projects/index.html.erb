@@ -1,20 +1,15 @@
- <% content_for :title, "Projects" %>
-
+<% content_for :title, "Projects" %>
 
 <%= search_form_for @q do |f| %>
-
   <div>
-    <%= f.label :title_cont, "Search by Project Title" %>
-    <%= f.text_field :title_cont, :placeholder => "ex: ruby" %>
-
-<%= f.submit :class => "btn btn-primary btn-block" %>
-  
-  <a href="/skills">Clear filters</a>
+    <%= f.label :title_cont, "Search by Project" %>
+    <%= f.text_field :title_cont, :placeholder => "ex: OpenBridge" %>
+    <%= f.submit :class => "btn btn-primary btn-block" %>
+    <a href="/projects">Clear filters</a>
   </div>
   <br>
 <% end %>
 
-<%# TODO: Add a search bar to filter skills by name. %>
 <h1>Projects</h1>
 
 <div id="projects">
